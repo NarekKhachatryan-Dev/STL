@@ -2,6 +2,9 @@
 #define ZOO_H
 
 #include "animals.h"
+#include <set>
+#include <initializer_list>
+#include <unordered_set>
 
 class zoo {
 private:
@@ -28,6 +31,14 @@ class animalset {
             animal_set.insert(animals.getAnimal(i));
         }
         return animal_set;
+    }
+
+    std::unordered_set<Animal*> unordered_setter(const zoo& animals) {
+        std::unordered_set<Animal*> animal_unordered_set;
+        for (int i = 0; i < animals.getAnimalCount(); ++i) {
+            animal_unordered_set.insert(animals.getAnimal(i));
+        }
+        return animal_unordered_set;
     }
 };
 

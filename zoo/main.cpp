@@ -21,6 +21,12 @@ int main() {
     for(const auto& animal : animalsSet) {
         std::cout << animal->getName() << " is in the set." << std::endl;
     }
+    std::cout << std::endl;
+
+    auto animalsUnorderedSet = set.unordered_setter(myZoo);
+    for(const auto& animal : animalsUnorderedSet) {
+        std::cout << animal->getName() << " is in the unordered set." << std::endl;
+    }
 
     return 0;
 }
