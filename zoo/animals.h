@@ -3,6 +3,8 @@
 
 #include <string>
 #include <iostream>
+#include <set>
+#include <initializer_list>
 
 class Animal {
 protected:

@@ -23,6 +23,10 @@ Animal* zoo::getAnimal(int index) const {
     return nullptr;
 }
 
+int zoo::getAnimalCount() const {
+    return m_currentIndex;
+}
+
 zoo::~zoo() {
     for(int i = 0; i < m_currentIndex; ++i) {
         delete m_animals[i];

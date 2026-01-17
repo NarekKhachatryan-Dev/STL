@@ -13,6 +13,14 @@ int main() {
 
     myZoo.makeAllSounds();
     checkifanimal(myZoo.getAnimal(0));
+    std::cout << std::endl;
+
+    animalset set;
+    std::set<Animal*> animalsSet = set.setter(myZoo);
+
+    for(const auto& animal : animalsSet) {
+        std::cout << animal->getName() << " is in the set." << std::endl;
+    }
 
     return 0;
 }

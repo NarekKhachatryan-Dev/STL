@@ -14,8 +14,21 @@ public:
     void addAnimal(Animal* animal);
     void makeAllSounds() const;
     Animal* getAnimal(int index) const;
+    int getAnimalCount() const;
 
     ~zoo();
+};
+
+class animalset {
+    public:
+
+    std::set<Animal*> setter(const zoo& animals) {
+        std::set<Animal*> animal_set;
+        for (int i = 0; i < animals.getAnimalCount(); ++i) {
+            animal_set.insert(animals.getAnimal(i));
+        }
+        return animal_set;
+    }
 };
 
 #endif
