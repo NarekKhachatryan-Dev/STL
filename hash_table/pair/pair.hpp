@@ -1,5 +1,6 @@
 #pragma once
 
+namespace My {
 template <typename T1, typename T2>
 struct pair {
     T1 first;
@@ -39,8 +40,8 @@ struct pair {
         return !(*this == other);
     }
 };
-
+};
 template <typename T1, typename T2>
-pair<T1, T2> make_pair(const T1& a, const T2& b) {
-    return pair<T1, T2>(a, b);
+My::pair<T1, T2> make_pair(const T1& a, const T2& b) {
+    return My::pair<T1, T2>(a, b);
 }

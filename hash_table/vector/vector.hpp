@@ -1,5 +1,6 @@
 #include <initializer_list>
 
+namespace My {
 template <typename T>
 class vector {
 private:
@@ -144,5 +145,5 @@ public:
     T& back() {
         return m_data[m_size - 1];
     }
-
+};
 };

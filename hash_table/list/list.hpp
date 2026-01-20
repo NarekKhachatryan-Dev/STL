@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+namespace My {
 template<typename T>
 class list {
 private:
@@ -129,6 +130,16 @@ public:
         }
     }
 
+    T& back() {
+    if (!head) throw std::runtime_error("List is empty");
+    node* cur = head;
+    while (cur->next) {
+        cur = cur->next;
+    }
+    return cur->data;
+    }
+
+
     template <typename Predicate>
     void remove_if(Predicate pred) {
         node* cur = head;
@@ -159,4 +170,5 @@ public:
 
     iterator begin() { return iterator(head); }
     iterator end() { return iterator(nullptr); }
+};
 };

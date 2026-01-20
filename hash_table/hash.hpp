@@ -7,7 +7,7 @@
 class HashTable {
 private:
     static const size_t TABLE_SIZE = 101;
-    vector<list<pair<std::string, int>>> table;
+    My::vector<My::list<My::pair<std::string, int>>> table;
 
     size_t hashFunction(const std::string& key) const {
         size_t hash = 0;
@@ -28,7 +28,7 @@ public:
                 return;
             }
         }
-        table[index].push_back(pair<std::string,int>(key, value));
+        table[index].push_back(My::pair<std::string,int>(key, value));
     }
 
     bool find(const std::string& key, int& value) const {
@@ -45,10 +45,36 @@ public:
     void remove(const std::string& key) {
         size_t index = hashFunction(key);
         auto& cell = table[index];
-        cell.remove_if([&key](const pair<std::string,int>& p) {
+        cell.remove_if([&key](const My::pair<std::string,int>& p) {
             return p.first == key;
         });
     }
 
+    void debugPrint() const {
+    for (size_t i = 0; i < TABLE_SIZE; ++i) {
+        std::cout << i << ": ";
+        for (const auto& p : table[i]) {
+            std::cout << "(" << p.first << "," << p.second << ") ";
+        }
+        std::cout << "\n";
+    }
+    }
+
+    int& operator[] (const std::string& key) {
+        size_t index = hashFunction(key);
+        for (auto& pair : table[index]) {
+            if (pair.first == key) {
+                return pair.second;
+            }
+        }
+        My::pair<std::string,int> newPair(key, int());
+        table[index].push_back(newPair);
+        for (auto& pair : table[index]) {
+            if (pair.first == key) {
+                return pair.second;
+            }
+        }
+        return table[index].back().second;
+    }
     ~HashTable() = default;
 };
