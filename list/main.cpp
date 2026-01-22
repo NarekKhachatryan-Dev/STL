@@ -8,18 +8,22 @@ int main() {
     lst.push_back(30);
 
     std::cout << "List contents: ";
-    lst.print(); // Expected output: 10 20 30
+    lst.print();
 
     std::cout << "Is list empty? " << (lst.empty() ? "Yes" : "No") << std::endl;
 
-    mylist::list<int> lst2 = lst; // Copy constructor
+    mylist::list<int> lst2 = lst;
     std::cout << "Copied list contents: ";
-    lst2.print(); // Expected output: 10 20 30
+    lst2.print();
 
-    mylist::list<int> lst3 = std::move(lst); // Move constructor
+    mylist::list<int> lst3 = std::move(lst);
     std::cout << "Moved list contents: ";
-    lst3.print(); // Expected output: 10 20 30
+    lst3.print();
     std::cout << "Original list after move, is empty? " << (lst.empty() ? "Yes" : "No") << std::endl;
+
+    delete_odd(lst3);
+    std::cout << "List after deleting odd elements: ";
+    lst3.print();
 
     return 0;
 }

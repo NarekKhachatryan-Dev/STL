@@ -97,6 +97,14 @@ public:
         return *this;
     }
 
+    iterator begin() {
+        return iterator(head);
+    }
+
+    iterator end() {
+        return iterator(nullptr);
+    }
+
     void push_back(const T& value) {
         node* newNode = new node(value);
         if(!head) {
@@ -110,8 +118,38 @@ public:
         }
     }
 
-    void insert(size_t index, const T& value) {
-        
+    iterator insert(iterator pos, const T& value) {
+        for(node* cur = head; cur != nullptr; cur = cur->next) {
+            if(cur == pos) {
+                node* newNode = new node(value);
+                newNode->next = cur->next;
+                cur->next = newNode;
+                return iterator(newNode);
+            }
+        }
+        return end();
+    }
+
+    iterator erase(iterator it) {
+        if(!head || it == end()) return end();
+        if(it == iterator(head)) {
+            node* temp = head;
+            head = head->next;
+            delete temp;
+            return iterator(head);
+        }
+
+        node* prev = head;
+        while (prev->next && iterator(prev->next) != it) {
+            prev = prev->next;
+        }
+        if(prev->next) {
+            node* temp = prev->next;
+            prev->next = prev->next->next;
+            delete temp;
+            return iterator(prev->next);
+        }
+        return end();
     }
 
     void push_front(const T& value) {
@@ -144,11 +182,9 @@ public:
         }
     }
 
-    void print() const {
-        node* cur = head;
-        while(cur) {
-            std::cout << cur ->data << ", ";
-            cur = cur ->next;
+    void print() {
+        for(auto it : *this) {
+            std::cout << it << " ";
         }
         std::cout << std::endl;
     }
@@ -166,3 +202,11 @@ public:
     }
 };
 };
+
+void delete_odd(mylist::list<int>& lst) {
+    for(auto it : lst) {
+        if(it % 2 != 0) {
+            // lst.erase(it); // Erase method is not implemented
+        }
+    }
+}
