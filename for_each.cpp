@@ -2,8 +2,9 @@
 #include <vector>
 #include <algorithm>
 
-template<class inputit, class unaryop>
-constexpr unaryop my_for_each(inputit first, inputit last, unaryop f) {
+template<class InputIt, class UnaryFunction>
+constexpr UnaryFunction for_each_custom(InputIt first, InputIt last, UnaryFunction f)
+{
     for (; first != last; ++first) {
         f(*first);
     }
@@ -11,27 +12,16 @@ constexpr unaryop my_for_each(inputit first, inputit last, unaryop f) {
 }
 
 int main() {
-    std::vector<int> vec = {1, 2, 3, 4, 5};
+    std::vector<int> v = {1, 2, 3, 4, 5};
 
-    my_for_each(vec.begin(), vec.end(), [](int& n) {
-        n *= 2;
+    for_each_custom(v.begin(), v.end(), [](int x) {
+        std::cout << x << " ";
     });
 
-    std::cout << "After my_for_each: ";
-    for (const auto& n : vec) {
-        std::cout << n << " ";
-    }
-    std::cout << std::endl;
+    std::cout << "\n";
 
-    std::for_each(vec.begin(), vec.end(), [](int& n) {
-        n += 1;
+    std::for_each(v.begin(), v.end(), [](int x) {
+        std::cout << x * 2 << " ";
     });
-
-    std::cout << "After std::for_each: ";
-    for (const auto& n : vec) {
-        std::cout << n << " ";
-    }
-    std::cout << std::endl;
-
-    return 0;
+    std::cout << "\n";
 }
