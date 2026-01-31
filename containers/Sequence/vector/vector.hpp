@@ -1,4 +1,5 @@
 #include <initializer_list>
+#include <stdexcept>
 
 template <typename T>
 class vector {
@@ -120,6 +121,13 @@ public:
     }
 
     T& operator[](size_t index) const {
+        return m_data[index];
+    }
+
+    T& at(size_t index) {
+        if(index >= m_size) {
+            throw std::out_of_range("Index out of range");
+        }
         return m_data[index];
     }
 
