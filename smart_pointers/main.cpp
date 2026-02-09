@@ -15,5 +15,11 @@ int main() {
     std::cout << "Released raw pointer value: " << *raw << std::endl;
     delete raw;
 
+    if(q) {
+        std::cout << "q is not null." << std::endl;
+    } else {
+        std::cout << "q is now null after release." << std::endl;
+    }
+
     return 0;
 }

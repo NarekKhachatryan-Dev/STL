@@ -18,6 +18,10 @@ class unique_ptr {
             other.ptr = nullptr;
         }
 
+        operator bool() const {
+            return ptr != nullptr;
+        }
+
         unique_ptr& operator=(unique_ptr&& other) noexcept {
             if(this != &other) {
                 deleter(ptr);
