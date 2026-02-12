@@ -41,6 +41,22 @@ class unique_ptr {
             return ptr;
         }
 
+        T& operator[] (size_t index) {
+            return ptr[index];
+        }
+
+        const T& operator*() const {
+            return *ptr;
+        }
+
+        const T* operator->() const {
+            return ptr;
+        }
+
+        const T& operator[] (size_t index) const {
+            return ptr[index];
+        }
+
         T* get() const {
             return ptr;
         }
