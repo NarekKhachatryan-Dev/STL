@@ -1,9 +1,24 @@
 #include <iostream>
 #include <future>
+#include <atomic>
 
-long long fib(unsigned n) {
+const int MAX_FIB = 92;
+std::atomic<long long> fib_cache[MAX_FIB + 1];
+
+long long fib(int n) {
     if (n <= 1) return n;
-    return fib(n - 1) + fib(n - 2);
+    
+    if (fib_cache[n] != 0) return fib_cache[n];
+    
+    long long a = 0, b = 1, result = 0;
+    for (int i = 2; i <= n; i++) {
+        result = a + b;
+        a = b;
+        b = result;
+    }
+    
+    fib_cache[n] = result;
+    return result;
 }
 
 int main() {
