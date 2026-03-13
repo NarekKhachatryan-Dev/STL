@@ -1,9 +1,9 @@
 #include <iterator>
 
-template <typename T>
+template <typename T, typename Node>
 class iterator {
 public:
-    iterator(node* ptr) : current(ptr) {}
+    iterator(Node* ptr) : current(ptr) {}
     
     T& operator*() const {
         return current->data;
@@ -33,5 +33,5 @@ public:
     }
 
 private:
-    node* current;
+    Node* current;
 };
