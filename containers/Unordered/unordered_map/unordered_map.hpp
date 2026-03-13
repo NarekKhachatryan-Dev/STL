@@ -10,7 +10,8 @@
 
 namespace My {
 
-template <typename Key, typename T, typename Hash = std::hash<Key>, typename KeyEqual = std::equal_to<Key>>
+template <typename Key, typename T, typename Hash = std::hash<Key>,
+			typename KeyEqual = std::equal_to<Key>>
 class unordered_map {
 public:
 	using key_type = Key;
@@ -19,7 +20,8 @@ public:
 	using size_type = std::size_t;
 
 	unordered_map()
-		: buckets_(kDefaultBucketCount), size_(0), max_load_factor_(1.0f), hasher_(Hash()), key_equal_(KeyEqual()) {}
+		: buckets_(kDefaultBucketCount), size_(0), max_load_factor_(1.0f), 
+			hasher_(Hash()), key_equal_(KeyEqual()) {}
 
 	explicit unordered_map(size_type bucket_count)
 		: buckets_(bucket_count == 0 ? kDefaultBucketCount : bucket_count),
