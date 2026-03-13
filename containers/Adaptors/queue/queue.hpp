@@ -1,6 +1,6 @@
 #pragma once
 #include <initializer_list>
-#include "../vector/vector.hpp"
+#include "../../Sequence/vector/vector.hpp"
 
 template <typename T>
 class queue : private vector<T> {
