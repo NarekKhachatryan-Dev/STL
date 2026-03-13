@@ -1,32 +1,41 @@
-#include "list.hpp"
 #ifndef QUEUE_HPP
 #define QUEUE_HPP
 
+#include "list.hpp"
+#include <cstddef>
+#include <utility>
+
 template <typename T>
-class Queue : public List<T> {
+class Queue {
+public:
     void enqueue(const T& value) {
-        this->push_back(value);
-    }
-    void enqueue(T&& value) {
-        this->push_back(std::move(value));
-    }
-    void dequeue() {
-        this->pop_front();
+        storage_.push_back(value);
+        ++size_;
     }
 
-    T& front() {
-        return this->head->data;
+    void enqueue(T&& value) {
+        storage_.push_back(std::move(value));
+        ++size_;
     }
-    const T& front() const {
-        return this->head->data;
+
+    T dequeue() {
+        T value = std::move(storage_.front());
+        storage_.pop_front();
+        --size_;
+        return value;
     }
 
     bool empty() const {
-        return this ->head == nullptr;
+        return storage_.empty();
     }
+
     std::size_t size() const {
-        return this ->size();
+        return size_;
     }
+
+private:
+    mylist::list<T> storage_;
+    std::size_t size_ = 0;
 };
 
 #endif

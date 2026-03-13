@@ -1,12 +1,15 @@
 #include <initializer_list>
+#include <cstddef>
 
 namespace My {
+using size_type = std::size_t;
+
 template <typename T>
 class vector {
 private:
     T* m_data;
-    size_t m_size;
-    size_t m_capacity;
+    size_type m_size;
+    size_type m_capacity;
 
 public:
 
@@ -25,12 +28,12 @@ public:
  
     vector() : m_data(nullptr), m_size(0), m_capacity(0) {}
 
-    vector(size_t capacity) 
+    vector(size_type capacity) 
         : m_data(new T[capacity]), m_size(0), m_capacity(capacity) {}
 
     vector(std::initializer_list<T> init) 
         : m_data(new T[init.size()]), m_size(init.size()), m_capacity(init.size()) {
-        size_t index = 0;
+        size_type index = 0;
         for (const T& item : init) {
             m_data[index++] = item;
         }
@@ -38,7 +41,7 @@ public:
 
     vector(const vector& other) : m_size(other.m_size), m_capacity(other.m_capacity) {
         m_data = new T[m_capacity];
-        for (size_t i = 0; i < m_size; ++i) {
+        for (size_type i = 0; i < m_size; ++i) {
             m_data[i] = other.m_data[i];
         }
     }
@@ -56,7 +59,7 @@ public:
             m_size = other.m_size;
             m_capacity = other.m_capacity;
             m_data = new T[m_capacity];
-            for (size_t i = 0; i < m_size; ++i) {
+            for (size_type i = 0; i < m_size; ++i) {
                 m_data[i] = other.m_data[i];
             }
         }
@@ -79,20 +82,20 @@ public:
         delete[] m_data;
     }
 
-    size_t size() const {
+    size_type size() const {
         return m_size;
     }
 
-    size_t capacity() const {
+    size_type capacity() const {
         return m_capacity;
     }
 
     void push_back(const T& value) {
         if(m_size == m_capacity) {
-            size_t new_capacity = (m_capacity == 0) ? 1 : m_capacity * 2;
+            size_type new_capacity = (m_capacity == 0) ? 1 : m_capacity * 2;
             T* new_data = new T[new_capacity];
 
-            for (size_t i = 0; i < m_size; i++)
+            for (size_type i = 0; i < m_size; i++)
             {
                 new_data[i] = m_data[i];
             }
@@ -104,11 +107,11 @@ public:
         m_data[m_size++] = value;
     }
 
-    T& operator[](size_t index) {
+    T& operator[](size_type index) {
         return m_data[index];
     }
 
-    T& operator[](size_t index) const {
+    T& operator[](size_type index) const {
         return m_data[index];
     }
 
@@ -130,7 +133,7 @@ public:
         if (m_size != other.m_size) {
             return false;
         }
-        for (size_t i = 0; i < m_size; ++i) {
+        for (size_type i = 0; i < m_size; ++i) {
             if (m_data[i] != other.m_data[i]) {
                 return false;
             }

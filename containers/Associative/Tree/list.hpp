@@ -122,6 +122,14 @@ public:
         return head == nullptr;
     }
 
+    T& front() {
+        return head->data;
+    }
+
+    const T& front() const {
+        return head->data;
+    }
+
     void clear() {
         while (head) {
             node* temp = head;

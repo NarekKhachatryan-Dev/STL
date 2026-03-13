@@ -1,5 +1,5 @@
-#include <vector>
 #include <iostream>
+#include <utility>
 #include "queue.hpp"
 
 template<typename T>
@@ -12,7 +12,7 @@ public:
 
         explicit Node(const T& val) : value(val), left(nullptr), right(nullptr) {}
         explicit Node(T&& val) : value(std::move(val)), left(nullptr), right(nullptr) {}
-    }
+    };
 
     Node* root;
 

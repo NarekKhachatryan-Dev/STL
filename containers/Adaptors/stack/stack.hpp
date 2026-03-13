@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <initializer_list>
-#include "../vector/vector.hpp"
+#include "../../Sequence/vector/vector.hpp"
 
 template <typename T>
 class stack : private vector<T> {
